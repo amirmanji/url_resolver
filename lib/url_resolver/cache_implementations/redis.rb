@@ -1,12 +1,16 @@
 module UrlResolver
   module CacheImplementations
     module RedisCache
-      def set(key, value, ttl = 24.hours)
-        @cache.setex(key, value, ttl)
+      def set_url(url, destination, ttl = 86400)
+        @cache.setex(url, ttl, destination)
       end
     
-      def get(key)
-        @cache.get(key)
+      def get_url(url)
+        @cache.get(url)
+      end
+      
+      def cache_key(url)
+        "url_resolver.urls.#{url}"
       end
     end
   end

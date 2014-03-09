@@ -1,1 +1,3 @@
-class UrlResolver::UrlResolverError < StandardError; end
+module UrlResolver
+  class UrlResolverError < StandardError; end
+end

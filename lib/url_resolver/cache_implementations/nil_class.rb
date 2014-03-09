@@ -1,11 +1,11 @@
 module UrlResolver
   module CacheImplementations
     module NilClassCache
-      def set(key, value, ttl = 24.hours)
+      def set_url(url, destination, ttl = 0)
         nil
       end
     
-      def get(key)
+      def get_url(url)
         nil
       end
     end
