@@ -28,7 +28,7 @@ describe UrlResolver::Resolver do
         .to raise_error(UrlResolver::UrlResolverError, /http:\/\/www.google.com/)
     end
     
-    describe 'if an expected exception is raised' do
+    describe 'with an expected exception' do
       before(:each) do
         RestClient.stub(:head).and_raise(SocketError)
       end

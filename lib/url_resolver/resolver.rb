@@ -24,10 +24,16 @@ module UrlResolver
       RestClient::RequestTimeout,
       RestClient::ResourceNotFound,
       RestClient::BadGateway,
-      RestClient::Forbidden
+      RestClient::Forbidden => e
+      
+      if e.message == 'getaddrinfo: nodename nor servname provided, or not known'
+        response = RestClient.head(url_to_check) { |response, request, result, &block| response }
+        url = response.headers[:location] if response.code == 302 && response.headers[:location]
+      end
   
       cache.set_url(url_to_check, url) if UrlResolver.configuration.cache_failures
       url
+    
     rescue Exception => e
       raise UrlResolverError.new("#{e.class.to_s}: #{url}")
     end
