@@ -42,6 +42,9 @@ UrlResolver.cache_failures = true
 
 ### Changelog
 
+##### 0.1.1
++ Handle redirects that resolve to nonstandard protocols
+
 ##### 0.1.0
 + Initial release
 

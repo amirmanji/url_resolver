@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'url_resolver'
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
   s.date        = '2014-03-08'
   s.summary     = "Url Resolver!"
   s.description = "Simple gem to follow redirects to resolve the destination of a URL. Caches results sometimes."
