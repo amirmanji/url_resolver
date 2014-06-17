@@ -33,9 +33,13 @@ module UrlResolver
   
       cache.set_url(url_to_check, url) if UrlResolver.configuration.cache_failures
       url
-    
     rescue Exception => e
-      raise UrlResolverError.new("#{e.class.to_s}: #{url}")
+      if e.message =~ /undefined method `request_uri'/
+        cache.set_url(url_to_check, url) if UrlResolver.configuration.cache_failures
+        url
+      else
+        raise UrlResolverError.new("#{e.class.to_s}: #{url} (#{e.message})")
+      end
     end
   end
 end
