@@ -24,6 +24,7 @@ module UrlResolver
       RestClient::RequestTimeout,
       RestClient::ResourceNotFound,
       RestClient::BadGateway,
+      RestClient::MethodNotAllowed,
       RestClient::Forbidden => e
       
       if e.message == 'getaddrinfo: nodename nor servname provided, or not known'
