@@ -7,7 +7,7 @@ module UrlResolver
     end
 
     def resolve(url)
-      url_to_check = URI.escape(url)
+      url_to_check = URI.escape(URI.escape(url), /\[|\]/)
       cached_url = cache.get_url(url_to_check)
       return cached_url if cached_url
       
