@@ -7,7 +7,7 @@ module UrlResolver
     end
 
     def resolve(url)
-      url_to_check = URI.escape(URI.escape(url), /\[|\]/)
+      url_to_check = URI.escape(url)
       cached_url = cache.get_url(url_to_check)
       return cached_url if cached_url
       
@@ -25,7 +25,8 @@ module UrlResolver
       RestClient::ResourceNotFound,
       RestClient::BadGateway,
       RestClient::MethodNotAllowed,
-      RestClient::Forbidden => e
+      RestClient::Forbidden,
+      URI::InvalidURIError => e
       
       if e.message == 'getaddrinfo: nodename nor servname provided, or not known'
         response = RestClient.head(url_to_check) { |response, request, result, &block| response }
