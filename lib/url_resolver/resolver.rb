@@ -26,6 +26,7 @@ module UrlResolver
       RestClient::BadGateway,
       RestClient::MethodNotAllowed,
       RestClient::Forbidden,
+      RestClient::NotAcceptable,
       URI::InvalidURIError => e
       
       if e.message == 'getaddrinfo: nodename nor servname provided, or not known'
