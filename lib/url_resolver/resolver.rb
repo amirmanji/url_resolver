@@ -25,6 +25,7 @@ module UrlResolver
       RestClient::ResourceNotFound,
       RestClient::BadGateway,
       RestClient::MethodNotAllowed,
+      RestClient::Unauthorized,
       RestClient::Forbidden,
       RestClient::NotAcceptable,
       URI::InvalidURIError => e
