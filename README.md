@@ -30,6 +30,7 @@ url_resolver supports caching in case you're planning on hitting a lot of the sa
 UrlResolver.configure do |config|
   config.cache = Redis.new # default: nil
   config.cache_failures = true # default: true
+  config.user_agent = 'Custom User-Agent' # default: 'Ruby'
 end
 ```
 
@@ -38,6 +39,7 @@ or
 ```ruby
 UrlResolver.configuration.cache = Redis.new
 UrlResolver.cache_failures = true
+UrlResolver.configuration.user_agent = 'Custom User-Agent'
 ```
 
 ### Changelog

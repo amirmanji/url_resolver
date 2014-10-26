@@ -6,12 +6,16 @@ module UrlResolver
       UrlResolver.configuration.url_cache
     end
 
+    def user_agent
+      UrlResolver.configuration.user_agent
+    end
+
     def resolve(url)
       url_to_check = URI.escape(url)
       cached_url = cache.get_url(url_to_check)
       return cached_url if cached_url
       
-      response = RestClient.head(url_to_check)
+      response = RestClient.head(url_to_check, user_agent: user_agent)
       response.args[:url].tap do |final_url|
         cache.set_url(url_to_check, final_url)
       end
