@@ -22,6 +22,7 @@ module UrlResolver
     rescue SocketError,
       Errno::ETIMEDOUT,
       Errno::ECONNREFUSED,
+      Errno::ECONNRESET,
       RestClient::InternalServerError,
       RestClient::ServiceUnavailable,
       RestClient::BadRequest,
