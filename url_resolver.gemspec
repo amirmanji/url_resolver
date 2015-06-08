@@ -11,5 +11,5 @@ Gem::Specification.new do |s|
     'http://www.github.com/amirmanji/url_resolver'
   s.license       = 'MIT'
   s.add_runtime_dependency "rest-client", [ "1.6.7" ]
-  s.add_development_dependency "rspec", [ "2.14.7" ]
+  s.add_development_dependency "rspec", [ "2.14.1" ]
 end
