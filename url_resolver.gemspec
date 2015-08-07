@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'url_resolver'
-  s.version     = '0.1.10'
-  s.date        = '2015-01-14'
+  s.version     = '0.1.11'
+  s.date        = '2015-08-7'
   s.summary     = "Url Resolver!"
   s.description = "Simple gem to follow redirects to resolve the destination of a URL. Caches results sometimes."
   s.authors     = ["Amir Manji"]
@@ -10,6 +10,6 @@ Gem::Specification.new do |s|
   s.homepage    =
     'http://www.github.com/amirmanji/url_resolver'
   s.license       = 'MIT'
-  s.add_runtime_dependency "rest-client", [ "1.6.7" ]
+  s.add_runtime_dependency "rest-client", '~> 1.8'
   s.add_development_dependency "rspec", [ "2.14.7" ]
 end
