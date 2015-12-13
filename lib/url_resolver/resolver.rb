@@ -17,11 +17,13 @@ module UrlResolver
 
       options.merge!({
         rest_client: {
+          url: url_to_check,
+          method: :head,
           user_agent: user_agent
         }
       })
 
-      response = RestClient::Request.execute(url: url_to_check, method: :head, options[:rest_client])
+      response = RestClient::Request.execute(options[:rest_client])
 
       response.args[:url].tap do |final_url|
         cache.set_url(url_to_check, final_url)
