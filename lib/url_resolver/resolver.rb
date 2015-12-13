@@ -21,7 +21,8 @@ module UrlResolver
         }
       })
 
-      response = RestClient.head(url_to_check, options[:rest_client])
+      response = RestClient::Request.execute(url: url_to_check, method: :head, options[:rest_client])
+
       response.args[:url].tap do |final_url|
         cache.set_url(url_to_check, final_url)
       end
