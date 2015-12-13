@@ -10,12 +10,18 @@ module UrlResolver
       UrlResolver.configuration.user_agent
     end
 
-    def resolve(url)
+    def resolve(url, options={})
       url_to_check = URI.escape(url)
       cached_url = cache.get_url(url_to_check)
       return cached_url if cached_url
-      
-      response = RestClient.head(url_to_check, user_agent: user_agent)
+
+      options.merge!({
+        rest_client: {
+          user_agent: user_agent
+        }
+      })
+
+      response = RestClient.head(url_to_check, options[:rest_client])
       response.args[:url].tap do |final_url|
         cache.set_url(url_to_check, final_url)
       end
@@ -35,12 +41,12 @@ module UrlResolver
       RestClient::Forbidden,
       RestClient::NotAcceptable,
       URI::InvalidURIError => e
-      
+
       if e.message == 'getaddrinfo: nodename nor servname provided, or not known'
         response = RestClient.head(url_to_check) { |response, request, result, &block| response }
         url = response.headers[:location] if response.code == 302 && response.headers[:location]
       end
-  
+
       cache.set_url(url_to_check, url) if UrlResolver.configuration.cache_failures
       url
     rescue Exception => e
