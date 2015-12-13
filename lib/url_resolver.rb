@@ -5,8 +5,8 @@ require_relative 'url_resolver/errors.rb'
 require_relative 'url_resolver/resolver.rb'
 
 module UrlResolver
-  def self.resolve(url)
+  def self.resolve(url, options={})
     @@resolver ||= UrlResolver::Resolver.new
-    @@resolver.resolve(url)
+    @@resolver.resolve(url, options)
   end
 end
