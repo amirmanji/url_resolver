@@ -1,3 +1,5 @@
+require 'rest-client'
+
 require_relative 'url_resolver/cache.rb'
 require_relative 'url_resolver/cache_implementations.rb'
 require_relative 'url_resolver/configuration.rb'

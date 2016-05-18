@@ -1,5 +1,3 @@
-require 'rest-client'
-
 module UrlResolver
   class Resolver
     def cache
@@ -19,23 +17,8 @@ module UrlResolver
       response.args[:url].tap do |final_url|
         cache.set_url(url_to_check, final_url)
       end
-    rescue SocketError,
-      Errno::ETIMEDOUT,
-      Errno::ECONNREFUSED,
-      Errno::ECONNRESET,
-      RestClient::InternalServerError,
-      RestClient::ServiceUnavailable,
-      RestClient::BadRequest,
-      RestClient::GatewayTimeout,
-      RestClient::RequestTimeout,
-      RestClient::ResourceNotFound,
-      RestClient::BadGateway,
-      RestClient::MethodNotAllowed,
-      RestClient::Unauthorized,
-      RestClient::Forbidden,
-      RestClient::NotAcceptable,
-      URI::InvalidURIError => e
-      
+    rescue *UrlResolver.configuration.errors_to_ignore => e
+
       if e.message == 'getaddrinfo: nodename nor servname provided, or not known'
         response = RestClient.head(url_to_check) { |response, request, result, &block| response }
         url = response.headers[:location] if response.code == 302 && response.headers[:location]
