@@ -26,11 +26,14 @@ UrlResolver.resolve('http://analytics.google.com')
 
 url_resolver supports caching in case you're planning on hitting a lot of the same URLs over and over and over and over again.
 
+It also supports using a custom list of errors to ignore.
+
 ```ruby
 UrlResolver.configure do |config|
   config.cache = Redis.new # default: nil
   config.cache_failures = true # default: true
   config.user_agent = 'Custom User-Agent' # default: 'Ruby'
+  config.errors_to_ignore << MyModule::MyError
 end
 ```
 
@@ -38,8 +41,9 @@ or
 
 ```ruby
 UrlResolver.configuration.cache = Redis.new
-UrlResolver.cache_failures = true
+UrlResolver.configuration.cache_failures = true
 UrlResolver.configuration.user_agent = 'Custom User-Agent'
+UrlResolver.configuration.errors_to_ignore << MyModule::MyError
 ```
 
 ### Changelog
