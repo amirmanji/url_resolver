@@ -9,7 +9,7 @@ module UrlResolver
     end
 
     def timeout
-      UriResolver.configuration.timeout
+      UrlResolver.configuration.timeout
     end
 
     def resolve(url, options={})
