@@ -1,6 +1,6 @@
 module UrlResolver
   class Configuration
-    attr_accessor :cache_failures, :user_agent, :errors_to_ignore
+    attr_accessor :cache_failures, :user_agent, :timeout, :errors_to_ignore
     attr_reader :cache, :url_cache
 
     DEFAULT_ERRORS_TO_IGNORE = [SocketError,
@@ -25,6 +25,7 @@ module UrlResolver
       @cache = nil
       @url_cache = Cache.new(@cache)
       @user_agent = 'Ruby'
+      @timeout = 60
       @errors_to_ignore = DEFAULT_ERRORS_TO_IGNORE
     end
     
