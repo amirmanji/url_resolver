@@ -8,13 +8,20 @@ module UrlResolver
       UrlResolver.configuration.user_agent
     end
 
-    def resolve(url)
+    def timeout
+      UrlResolver.configuration.timeout
+    end
+
+    def resolve(url, options={})
       url_to_check = URI.escape(url)
       cached_url = cache.get_url(url_to_check)
       return cached_url if cached_url
-      
-      response = RestClient.head(url_to_check, user_agent: user_agent)
-      response.args[:url].tap do |final_url|
+
+      default_options = { :user_agent => user_agent, :timeout => timeout }
+      options = default_options.merge(options)
+
+      response = RestClient.head(url_to_check, options)
+      response.request.url.tap do |final_url|
         cache.set_url(url_to_check, final_url)
       end
     rescue *UrlResolver.configuration.errors_to_ignore => e
@@ -23,7 +30,7 @@ module UrlResolver
         response = RestClient.head(url_to_check) { |response, request, result, &block| response }
         url = response.headers[:location] if response.code == 302 && response.headers[:location]
       end
-  
+
       cache.set_url(url_to_check, url) if UrlResolver.configuration.cache_failures
       url
     rescue Exception => e
