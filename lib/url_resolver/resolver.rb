@@ -21,7 +21,7 @@ module UrlResolver
       options = default_options.merge(options)
 
       response = RestClient.head(url_to_check, options)
-      response.args[:url].tap do |final_url|
+      response.request.url.tap do |final_url|
         cache.set_url(url_to_check, final_url)
       end
     rescue *UrlResolver.configuration.errors_to_ignore => e
