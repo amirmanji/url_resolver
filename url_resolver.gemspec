@@ -10,6 +10,6 @@ Gem::Specification.new do |s|
   s.homepage    =
     'http://www.github.com/amirmanji/url_resolver'
   s.license       = 'MIT'
-  s.add_runtime_dependency "rest-client", '~> 1.8'
+  s.add_runtime_dependency "rest-client", '~> 2.0.2'
   s.add_development_dependency "rspec", [ "2.14.7" ]
 end
