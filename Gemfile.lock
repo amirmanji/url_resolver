@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    url_resolver (0.2.1)
+    url_resolver (0.3.0)
       rest-client (~> 2.0.2)
 
 GEM
