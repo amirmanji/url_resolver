@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.license       = 'MIT'
   s.add_runtime_dependency "rest-client", '~> 2.0.2'
   s.add_development_dependency "rspec", '~> 3.8'
+  s.add_development_dependency "rspec_junit_formatter", '~> 0.4'
   s.add_development_dependency "simplecov", '~> 0.16'
   s.add_development_dependency "webmock", '~> 3.5'
 end
