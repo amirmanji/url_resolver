@@ -1,5 +1,7 @@
 # url_resolver
 
+[![CircleCI](https://circleci.com/gh/tenjin/url_resolver.svg?style=svg)](https://circleci.com/gh/tenjin/url_resolver)
+
 url_resolver follows redirects to resolve URLs. It's pretty alright.
 
 ### Installation
