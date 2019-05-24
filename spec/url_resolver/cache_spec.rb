@@ -8,14 +8,14 @@ describe UrlResolver::Cache do
     
     it 'can set and get for NilClass' do
       cache = UrlResolver::Cache.new(nil)
-      cache.should respond_to(:get_url)
-      cache.should respond_to(:set_url)
+      expect(cache).to respond_to(:get_url)
+      expect(cache).to respond_to(:set_url)
     end
     
     it 'can set and get for Redis' do
       cache = UrlResolver::Cache.new(Redis.new)
-      cache.should respond_to(:get_url)
-      cache.should respond_to(:set_url)
+      expect(cache).to respond_to(:get_url)
+      expect(cache).to respond_to(:set_url)
     end
   end
 end

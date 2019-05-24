@@ -34,6 +34,7 @@ UrlResolver.configure do |config|
   config.cache_failures = true # default: true
   config.user_agent = 'Custom User-Agent' # default: 'Ruby'
   config.errors_to_ignore << MyModule::MyError
+  config.timeout = 60
 end
 ```
 
@@ -44,9 +45,15 @@ UrlResolver.configuration.cache = Redis.new
 UrlResolver.configuration.cache_failures = true
 UrlResolver.configuration.user_agent = 'Custom User-Agent'
 UrlResolver.configuration.errors_to_ignore << MyModule::MyError
+UrlResolver.configuration.timeout = 60
 ```
 
 ### Changelog
+
+##### 0.2.1
++ Update rest-client to 2.0.2
++ Add http timeout configuration
++ Handle multi-hop redirects that end in unreachable urls (non-http, unknown hostnames)
 
 ##### 0.1.1
 + Handle redirects that resolve to nonstandard protocols
